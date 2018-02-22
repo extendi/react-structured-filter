@@ -11,7 +11,7 @@ import moment from 'moment';
 import fuzzy from 'fuzzy';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
-import listensToClickOutside from 'react-onclickoutside/decorator';
+import onClickOutsideHOC from 'react-onclickoutside';
 
 import TypeaheadSelector from './selector';
 import KeyEvent from '../keyevent';
@@ -310,4 +310,4 @@ class Typeahead extends Component {
   }
 }
 
-export default listensToClickOutside( Typeahead );
+export default onClickOutsideHOC( Typeahead );
