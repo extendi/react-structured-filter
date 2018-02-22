@@ -3,11 +3,11 @@
   "version": "4.5.0",
   "description": "React component that provides autocomplete faceted search queries",
   "main": "lib/main.js",
-  "author": "Josh Carr",
-  "homepage": "https://github.com/joshcarr/react-structured-filter",
+  "author": "Matteo Alessani",
+  "homepage": "https://github.com/extendi/react-structured-filter",
   "repository": {
     "type": "git",
-    "url": "https://github.com/joshcarr/react-structured-filter.git"
+    "url": "https://github.com/extendi/react-structured-filter.git"
   },
   "dependencies": {
     "classnames": "^2.2.3",
