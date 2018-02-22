@@ -307,7 +307,7 @@ export default class Tokenizer extends Component {
 
     // Remove token ONLY when bksp pressed at beginning of line
     // without a selection
-    const entry = ReactDOM.findDOMNode( this.refs.typeahead.refs.inner.inputRef());
+    const entry = ReactDOM.findDOMNode( this.refs.typeahead.getInstance().inputRef());
     if ( entry.selectionStart === entry.selectionEnd &&
         entry.selectionStart === 0 ) {
       if ( this.state.operator !== '' ) {
@@ -327,7 +327,7 @@ export default class Tokenizer extends Component {
         );
         this.setState({ category: lastSelected.category, operator: lastSelected.operator });
         if ( this._getCategoryType( lastSelected.category ) !== 'textoptions' ) {
-          this.refs.typeahead.refs.inner.setEntryText( lastSelected.value );
+          this.refs.typeahead.getInstance().setEntryText( lastSelected.value );
         }
       }
       event.preventDefault();
@@ -350,13 +350,13 @@ export default class Tokenizer extends Component {
   _addTokenForValue( value ) {
     if ( this.state.category === '' ) {
       this.setState({ category: value });
-      this.refs.typeahead.refs.inner.setEntryText( '' );
+      this.refs.typeahead.getInstance().setEntryText( '' );
       return;
     }
 
     if ( this.state.operator === '' ) {
       this.setState({ operator: value });
-      this.refs.typeahead.refs.inner.setEntryText( '' );
+      this.refs.typeahead.getInstance().setEntryText( '' );
       return;
     }
 
@@ -368,7 +368,7 @@ export default class Tokenizer extends Component {
 
     this.state.selected.push( newValue );
     this.setState({ selected: this.state.selected });
-    this.refs.typeahead.refs.inner.setEntryText( '' );
+    this.refs.typeahead.getInstance().setEntryText( '' );
     this.props.onChange( this.state.selected );
 
     this.setState({
