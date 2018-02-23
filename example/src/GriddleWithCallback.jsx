@@ -14,7 +14,7 @@ const NextArrow = <i className="glyphicon glyphicon-chevron-right" />;
 const PreviousArrow = <i className="glyphicon glyphicon-chevron-left" />;
 const SettingsIconComponent = <i className="glyphicon glyphicon-cog" />;
 
-class GriddleWithCallback extends React.component {
+class GriddleWithCallback extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -228,4 +228,4 @@ GriddleWithCallback.defaultProps = {
   filter: "",
 }
 
-module.exports = GriddleWithCallback;
+export default GriddleWithCallback;

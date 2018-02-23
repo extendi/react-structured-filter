@@ -8,8 +8,9 @@ import '../../src/react-structured-filter.css';
 import ExampleData from './ExampleData';
 
 class ExampleTable extends React.Component {
-  getInitialState() {
-    return {
+  constructor(props) {
+    super(props);
+    this.state = {
       filter: [
             {
               category: 'Industry',
@@ -22,7 +23,8 @@ class ExampleTable extends React.Component {
               value: 'Dec 8, 1980 10:50 PM',
             },
           ],
-    }
+    };
+    this.updateFilter = this.updateFilter.bind(this);
   }
 
   getJsonData(filterString, sortColumn, sortAscending, page, pageSize, callback) {
@@ -90,4 +92,4 @@ class ExampleTable extends React.Component {
   }
 }
 
-module.exports = ExampleTable;
+export default ExampleTable;
