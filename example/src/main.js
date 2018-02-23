@@ -1,8 +1,8 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var ExampleTable = require('./ExampleTable');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ExampleTable from './ExampleTable';
 
-require( './css/griddle.css' );
+import './css/griddle.css';
 
 ReactDOM.render(
   <div>

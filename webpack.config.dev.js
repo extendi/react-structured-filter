@@ -28,17 +28,17 @@ module.exports = {
     },
   },
   module: {
-    preLoaders: [
-      {
-        test: /\.(js|jsx)$/,
-        loader: 'eslint',
-        include: [
-          path.resolve( __dirname, 'src' ),
-          // comment out for now until we fix all the coding styles
-          // path.resolve( __dirname, 'example/src' ),
-        ],
-      },
-    ],
+    // preLoaders: [
+    //  {
+    //     test: /\.(js|jsx)$/,
+    //     loader: 'eslint',
+    //     include: [
+    //       path.resolve( __dirname, 'src' ),
+    //       // comment out for now until we fix all the coding styles
+    //       // path.resolve( __dirname, 'example/src' ),
+    //     ],
+    //   },
+    // ],
     loaders: [
       {
         test: /\.(js|jsx)$/,
