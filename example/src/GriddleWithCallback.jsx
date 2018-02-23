@@ -1,59 +1,36 @@
-var React = require('react');
-var _ = require('underscore');
-var Griddle = require('griddle-react');
+import React from 'react';
+import _ from 'underscore';
+import Griddle from 'griddle-react';
 
-var Loading = React.createClass({
-  getDefaultProps: function(){
-    return {
-      loadingText: "Loading"
-    }
-  },
-  render: function(){
-    return <div className="loading">{this.props.loadingText}</div>;
-  }
-});
+const Loading = ({ loadingText }) => (
+  <div className="loading">{loadingText}</div>
+)
 
-var NextArrow = React.createElement("i", {className: "glyphicon glyphicon-chevron-right"}, null);
-var PreviousArrow = React.createElement("i", {className: "glyphicon glyphicon-chevron-left"}, null);
-var SettingsIconComponent = React.createElement("i", {className: "glyphicon glyphicon-cog"}, null);
+Loading.defaultProps = {
+  loadingText: "Loading"
+}
 
-var GriddleWithCallback = React.createClass({
-  /**
-   *
-   */
-  getDefaultProps: function(){
-    return {
-      getExternalResults: null,
-      resultsPerPage: 10,
-      loadingComponent: null,
-      enableInfiniteScroll: false,
-      filter: ""
-    }
-  },
+const NextArrow = <i className="glyphicon glyphicon-chevron-right" />;
+const PreviousArrow = <i className="glyphicon glyphicon-chevron-left" />;
+const SettingsIconComponent = <i className="glyphicon glyphicon-cog" />;
 
-
-  /**
-   *
-   */
-  getInitialState: function(){
-    var initial = { "results": [],
-        "page": 0,
-        "maxPage": 0,
-        "sortColumn":null,
-        "sortAscending":true
+class GriddleWithCallback extends React.component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      results: [],
+      page: 0,
+      maxPage: 0,
+      sortColumn: null,
+      sortAscending: true,
+      isLoading: true,
     };
-
-    // If we need to get external results, grab the results.
-    initial.isLoading = true; // Initialize to 'loading'
-
-    return initial;
-  },
-
+  }
 
   /**
    * Called when component mounts
    */
-  componentDidMount: function(){
+  componentDidMount() {
     var state = this.state;
     state.pageSize = this.props.resultsPerPage;
 
@@ -68,13 +45,9 @@ var GriddleWithCallback = React.createClass({
     state = this.updateStateWithExternalResults(state, function(updatedState) {
       that.setState(updatedState);
     });
-  },
+  }
 
-
-  /**
-   *
-   */
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     var state = this.state,
     that = this;
 
@@ -93,21 +66,17 @@ var GriddleWithCallback = React.createClass({
       // Set the state.
       that.setState(updatedState);
     });
-  },
+  }
 
 
   /**
    * Utility function
    */
-  setDefault: function(original, value){
+  setDefault(original, value) {
     return typeof original === 'undefined' ? value : original;
-  },
+  }
 
-
-  /**
-   *
-   */
-  setPage: function(index, pageSize){
+  setPage(index, pageSize) {
     //This should interact with the data source to get the page at the given index
     var that = this;
     var state = {
@@ -118,12 +87,9 @@ var GriddleWithCallback = React.createClass({
     this.updateStateWithExternalResults(state, function(updatedState) {
       that.setState(updatedState);
     });
-  },
+  }
 
-  /**
-   *
-   */
-  getExternalResults: function(state, callback) {
+  getExternalResults(state, callback) {
     var filter,
     sortColumn,
     sortAscending,
@@ -165,13 +131,10 @@ var GriddleWithCallback = React.createClass({
 
     // Obtain the results
     this.props.getExternalResults(filter, sortColumn, sortAscending, page, pageSize, callback);
-  },
+  }
 
 
-  /**
-   *
-   */
-  updateStateWithExternalResults: function(state, callback) {
+  updateStateWithExternalResults(state, callback) {
     var that = this;
 
     // Update the table to indicate that it's loading.
@@ -196,34 +159,22 @@ var GriddleWithCallback = React.createClass({
 
       callback(state);
     });
-  },
+  }
 
-
-  /**
-   *
-   */
-  getMaxPage: function(pageSize, totalResults){
+  getMaxPage(pageSize, totalResults) {
     if (!totalResults) {
       totalResults = this.state.totalResults;
     }
 
     var maxPage = Math.ceil(totalResults / pageSize);
     return maxPage;
-  },
+  }
 
-
-  /**
-   *
-   */
-  hasExternalResults: function() {
+  hasExternalResults() {
     return typeof(this.props.getExternalResults) === 'function';
-  },
+  }
 
-
-  /**
-   *
-   */
-  changeSort: function(sort, sortAscending){
+  changeSort(sort, sortAscending) {
     var that = this;
 
     // This should change the sort for the given column
@@ -236,26 +187,19 @@ var GriddleWithCallback = React.createClass({
     this.updateStateWithExternalResults(state, function(updatedState) {
       that.setState(updatedState);
     });
-  },
+  }
 
-  setFilter: function(filter) {
+  setFilter(filter) {
     // no-op
-  },
+  }
 
-
-  /**
-   *
-   */
-  setPageSize: function(size){
+  setPageSize(size) {
     this.setPage(0, size);
-  },
+  }
 
-
-  /**
-   *
-   */
-  render: function(){
-    return <Griddle {...this.props} useExternal={true} externalSetPage={this.setPage}
+  render() {
+    return (
+      <Griddle {...this.props} useExternal={true} externalSetPage={this.setPage}
       externalChangeSort={this.changeSort} externalSetFilter={this.setFilter}
       externalSetPageSize={this.setPageSize} externalMaxPage={this.state.maxPage}
       externalCurrentPage={this.state.page} results={this.state.results} tableClassName="table" resultsPerPage={this.state.pageSize}
@@ -272,7 +216,16 @@ var GriddleWithCallback = React.createClass({
       enableSort={true}
       showFilter={false}
       />
+    );
   }
-});
+}
+
+GriddleWithCallback.defaultProps = {
+  getExternalResults: null,
+  resultsPerPage: 10,
+  loadingComponent: null,
+  enableInfiniteScroll: false,
+  filter: "",
+}
 
 module.exports = GriddleWithCallback;

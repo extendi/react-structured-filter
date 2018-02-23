@@ -1,14 +1,14 @@
-var React = require('react');
-var Griddle = require('griddle-react');
-var GriddleWithCallback = require('./GriddleWithCallback');
-var StructuredFilter = require('../../src/main');
+import React from 'react';
+import Griddle from 'griddle-react';
+import GriddleWithCallback from './GriddleWithCallback';
+import StructuredFilter from '../../src/main';
 
-require('../../src/react-structured-filter.css');
+import '../../src/react-structured-filter.css';
 
-var ExampleData = require('./ExampleData');
+import ExampleData from './ExampleData';
 
-var ExampleTable = React.createClass({
-  getInitialState: function() {
+class ExampleTable extends React.Component {
+  getInitialState() {
     return {
       filter: [
             {
@@ -23,10 +23,9 @@ var ExampleTable = React.createClass({
             },
           ],
     }
-  },
+  }
 
-
-  getJsonData: function(filterString, sortColumn, sortAscending, page, pageSize, callback) {
+  getJsonData(filterString, sortColumn, sortAscending, page, pageSize, callback) {
 
     if (filterString==undefined) {
       filterString = "";
@@ -38,29 +37,29 @@ var ExampleTable = React.createClass({
     // Normally you would make a Reqwest here to the server
     var results = ExampleData.filter(filterString, sortColumn, sortAscending, page, pageSize);
     callback(results);
-  },
+  }
 
 
-  updateFilter: function(filter){
+  updateFilter(filter) {
     // Set our filter to json data of the current filter tokens
     this.setState({filter: filter});
-  },
+  }
 
 
-  getSymbolOptions: function() {
+  getSymbolOptions() {
     return ExampleData.getSymbolOptions();
-  },
+  }
 
-  getSectorOptions: function() {
+  getSectorOptions() {
     return ExampleData.getSectorOptions();
-  },
+  }
 
-  getIndustryOptions: function() {
+  getIndustryOptions() {
     return ExampleData.getIndustryOptions();
-  },
+  }
 
 
-  render: function(){
+  render() {
     return (
       <div>
         <StructuredFilter
@@ -89,5 +88,6 @@ var ExampleTable = React.createClass({
       </div>
     )
   }
-});
+}
+
 module.exports = ExampleTable;

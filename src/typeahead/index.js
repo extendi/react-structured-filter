@@ -135,6 +135,7 @@ class Typeahead extends Component {
   _onOptionSelected( option ) {
     const nEntry = ReactDOM.findDOMNode( this.refs.entry );
     nEntry.focus();
+    console.log(option);
     nEntry.value = option;
     this.setState({
       visible: this.getOptionsForValue( option, this.state.options ),
@@ -282,7 +283,7 @@ class Typeahead extends Component {
             ref="datepicker"
             dateFormat={ "ll" }
             defaultValue={ defaultDate }
-            onBlur={ this._handleDateChange }
+            onChange={ this._handleDateChange }
             open={ this.state.focused }
           />
         </span>
