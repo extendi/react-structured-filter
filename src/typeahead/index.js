@@ -9,10 +9,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import moment from 'moment';
 import fuzzy from 'fuzzy';
-//import Datetime from 'react-datetime';
-import DatePicker from 'react-datepicker';
-// import 'react-datetime/css/react-datetime.css';
-import 'react-datepicker/dist/react-datepicker.css';
+import Datetime from 'react-datetime';
+//import DatePicker from 'react-datepicker';
+import 'react-datetime/css/react-datetime.css';
+//import 'react-datepicker/dist/react-datepicker.css';
 import onClickOutsideHOC from 'react-onclickoutside';
 
 import TypeaheadSelector from './selector';
@@ -281,7 +281,7 @@ class Typeahead extends Component {
           className={ classList }
           onFocus={ this._onFocus }
         >
-          <DatePicker
+          <Datetime
             ref="datepicker"
             dateFormat={ "ll" }
             selected={ defaultDate }
