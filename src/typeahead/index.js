@@ -286,9 +286,8 @@ class Typeahead extends Component {
             dateFormat={ "ll" }
             selected={ defaultDate }
             onChange={ this._handleDateChange }
-            // hidePopper={ this.state.focused }
-            autoFocus
-            // open={ this.state.focused }
+            // autoFocus
+            open={ this.state.focused }
           />
         </span>
       );
