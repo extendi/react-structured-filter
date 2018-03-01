@@ -400,8 +400,12 @@ export default class Tokenizer extends Component {
           { this._renderTokens() }
 
           <div className="filter-input-group">
-            <div className="filter-category">{ this.state.category } </div>
-            <div className="filter-operator">{ this.state.operator } </div>
+            <div className="filter-category">
+              <span className="p-r-5">{ this.state.category }</span>
+            </div>
+            <div className="filter-operator">
+              <span className="p-r-5">{ this.state.operator }</span>
+            </div>
 
             <Typeahead ref="typeahead"
               className={ classList }
