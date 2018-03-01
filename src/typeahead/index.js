@@ -9,10 +9,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import moment from 'moment';
 import fuzzy from 'fuzzy';
-import Datetime from 'react-datetime';
-//import DatePicker from 'react-datepicker';
-import 'react-datetime/css/react-datetime.css';
-//import 'react-datepicker/dist/react-datepicker.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import onClickOutsideHOC from 'react-onclickoutside';
 
 import TypeaheadSelector from './selector';
@@ -32,6 +30,7 @@ class Typeahead extends Component {
     options: PropTypes.array,
     header: PropTypes.string,
     datatype: PropTypes.string,
+    dateFormat: PropTypes.string,
     defaultValue: PropTypes.string,
     placeholder: PropTypes.string,
     onOptionSelected: PropTypes.func,
@@ -42,6 +41,7 @@ class Typeahead extends Component {
   static defaultProps = {
     options: [],
     header: 'Category',
+    dateFormat: 'DD MMM YYYY',
     datatype: 'text',
     customClasses: {},
     defaultValue: '',
@@ -68,7 +68,8 @@ class Typeahead extends Component {
     options: this.props.options,
     header: this.props.header,
     datatype: this.props.datatype,
-
+    dateFormat: this.props.dateFormat,
+    
     focused: false,
 
     // The currently visible set of options
@@ -137,7 +138,6 @@ class Typeahead extends Component {
   _onOptionSelected( option ) {
     const nEntry = ReactDOM.findDOMNode( this.refs.entry );
     nEntry.focus();
-    console.log(option);
     nEntry.value = option;
     this.setState({
       visible: this.getOptionsForValue( option, this.state.options ),
@@ -241,9 +241,9 @@ class Typeahead extends Component {
   }
 
   _handleDateChange( date ) {
-    let newDate = moment( date, 'lll' );
+    let newDate = moment( date, this.props.dateFormat );
     if ( !newDate.isValid()) newDate = moment();
-    this.props.onOptionSelected( newDate.format( 'lll' ));
+    this.props.onOptionSelected( newDate.format( this.props.dateFormat ));
   }
 
   _showDatePicker() {
@@ -273,7 +273,7 @@ class Typeahead extends Component {
     const classList = classNames( classes );
 
     if ( this._showDatePicker()) {
-      let defaultDate = moment( this.state.entryValue, 'lll' );
+      let defaultDate = moment( this.state.entryValue, this.props.dateFormat );
       if ( !defaultDate.isValid()) defaultDate = moment();
       return (
         <span
@@ -281,13 +281,13 @@ class Typeahead extends Component {
           className={ classList }
           onFocus={ this._onFocus }
         >
-          <Datetime
+          <DatePicker
             ref="datepicker"
-            dateFormat={ "ll" }
+            dateFormat={ this.props.dateFormat }
             selected={ defaultDate }
             onChange={ this._handleDateChange }
-            // autoFocus
-            open={ this.state.focused }
+            autoFocus
+            //open={ this.state.focused }
           />
         </span>
       );
