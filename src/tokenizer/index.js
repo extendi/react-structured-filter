@@ -401,10 +401,10 @@ export default class Tokenizer extends Component {
 
           <div className="filter-input-group">
             <div className="filter-category">
-              <span className="p-r-5">{ this.state.category }</span>
+              <span className={!this.state.category ? '' : 'p-r-5'}>{ this.state.category }</span>
             </div>
             <div className="filter-operator">
-              <span className="p-r-5">{ this.state.operator }</span>
+              <span className={!this.state.operator ? '' : 'p-r-5'}>{ this.state.operator }</span>
             </div>
 
             <Typeahead ref="typeahead"
