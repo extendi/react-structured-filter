@@ -60,6 +60,7 @@ class Typeahead extends Component {
     this._onEnter = this._onEnter.bind( this );
     this._onEscape = this._onEscape.bind( this );
     this._onTab = this._onTab.bind( this );
+    this._onKeyDatePicker = this._onKeyDatePicker.bind(this);
     // this._addTokenForValue = this._addTokenForValue.bind( this );
   }
 
@@ -191,6 +192,7 @@ class Typeahead extends Component {
   }
 
   _onKeyDown( event ) {
+    console.log('_onKeyDown')
     // If Enter pressed
     if ( event.keyCode === KeyEvent.DOM_VK_RETURN || event.keyCode === KeyEvent.DOM_VK_ENTER ) {
       // If no options were provided so we can match on anything
@@ -241,6 +243,7 @@ class Typeahead extends Component {
   }
 
   _handleDateChange( date ) {
+    console.log('_handleDateChange');
     let newDate = moment( date, this.props.dateFormat );
     if ( !newDate.isValid()) newDate = moment();
     this.props.onOptionSelected( newDate.format( this.props.dateFormat ));
@@ -259,6 +262,13 @@ class Typeahead extends Component {
     }
 
     return this.refs.entry;
+  }
+
+  _onKeyDatePicker(event) {
+    if ( event.keyCode === KeyEvent.DOM_VK_BACK_SPACE ) {
+      this.props.removeDatePicker();
+      return;
+    }
   }
 
   render() {
@@ -286,6 +296,7 @@ class Typeahead extends Component {
             dateFormat={ this.props.dateFormat }
             selected={ defaultDate }
             onChange={ this._handleDateChange }
+            onKeyDown={ this._onKeyDatePicker }
             autoFocus
           />
         </span>

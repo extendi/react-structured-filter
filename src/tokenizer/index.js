@@ -191,6 +191,7 @@ export default class Tokenizer extends Component {
     this._getOptionsForTypeahead = this._getOptionsForTypeahead.bind( this );
     this._removeTokenForValue = this._removeTokenForValue.bind( this );
     this._clearTokens = this._clearTokens.bind(this);
+    this._removeDatePicker = this._removeDatePicker.bind(this);
   }
 
   state = {
@@ -299,6 +300,13 @@ export default class Tokenizer extends Component {
     }
   }
 
+  _removeDatePicker() {
+    this.setState({ operator: ''}, () => {
+      this.refs.typeahead.getInstance().setEntryText( '' );
+      this.refs.typeahead.getInstance()._onFocus();
+      this.refs.typeahead.getInstance().inputRef().focus();
+    });
+  }
 
   _onKeyDown( event ) {
     // We only care about intercepting backspaces
@@ -309,6 +317,7 @@ export default class Tokenizer extends Component {
     // Remove token ONLY when bksp pressed at beginning of line
     // without a selection
     const entry = ReactDOM.findDOMNode( this.refs.typeahead.getInstance().inputRef());
+    //debugger
     if ( entry.selectionStart === entry.selectionEnd &&
         entry.selectionStart === 0 ) {
       if ( this.state.operator !== '' ) {
@@ -368,7 +377,6 @@ export default class Tokenizer extends Component {
       this.refs.typeahead.getInstance().setEntryText( '' );
       return;
     }
-
     const newValue = {
       category: this.state.category,
       operator: this.state.operator,
@@ -383,7 +391,7 @@ export default class Tokenizer extends Component {
     this.setState({
       category: '',
       operator: '',
-    });
+    }, () => this.refs.typeahead.getInstance().inputRef().focus());
 
     return;
   }
@@ -425,6 +433,7 @@ export default class Tokenizer extends Component {
               datatype={ this._getInputType() }
               onOptionSelected={ this._addTokenForValue }
               onKeyDown={ this._onKeyDown }
+              removeDatePicker={ this._removeDatePicker }
             />
             </div>
           </div>
