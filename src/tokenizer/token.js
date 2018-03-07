@@ -18,7 +18,7 @@ export default class Token extends Component {
     super( ...args );
     this._handleClick = this._handleClick.bind( this );
   }
-
+  
   _handleClick( event ) {
     this.props.onRemove( this.props.children );
     event.preventDefault();

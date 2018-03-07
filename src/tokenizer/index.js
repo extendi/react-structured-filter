@@ -190,6 +190,7 @@ export default class Tokenizer extends Component {
     this._onKeyDown = this._onKeyDown.bind( this );
     this._getOptionsForTypeahead = this._getOptionsForTypeahead.bind( this );
     this._removeTokenForValue = this._removeTokenForValue.bind( this );
+    this._clearTokens = this._clearTokens.bind(this);
   }
 
   state = {
@@ -346,6 +347,14 @@ export default class Tokenizer extends Component {
 
     return;
   }
+  
+  _clearTokens() {
+    this.state.selected = []
+    this.setState({ selected: this.state.selected });
+    this.props.onChange( this.state.selected );
+    this.refs.typeahead.getInstance()._onFocus();
+    this.refs.typeahead.getInstance().inputRef().focus();
+  }
 
   _addTokenForValue( value ) {
     if ( this.state.category === '' ) {
@@ -419,6 +428,7 @@ export default class Tokenizer extends Component {
             />
             </div>
           </div>
+          { this.state.selected.length > 0 && <div className="filter-clear-search"><a title="Clear search" onClick={() => this._clearTokens() }>x</a></div> }
       </div>
     );
   }

@@ -287,7 +287,6 @@ class Typeahead extends Component {
             selected={ defaultDate }
             onChange={ this._handleDateChange }
             autoFocus
-            //open={ this.state.focused }
           />
         </span>
       );
