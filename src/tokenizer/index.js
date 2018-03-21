@@ -426,7 +426,7 @@ export default class Tokenizer extends Component {
 
             <Typeahead ref="typeahead"
               className={ classList }
-              placeholder={ this.props.placeholder }
+              placeholder={ this.state.selected == 0 && !this.state.category ? this.props.placeholder : '' }
               customClasses={ this.props.customClasses }
               options={ this._getOptionsForTypeahead() }
               header={ this._getHeader() }

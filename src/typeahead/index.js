@@ -295,7 +295,7 @@ class Typeahead extends Component {
             ref="datepicker"
             dateFormat={ this.props.dateFormat }
             selected={ defaultDate }
-            onChange={ this._handleDateChange }
+            onSelect={ this._handleDateChange }
             onKeyDown={ this._onKeyDatePicker }
             autoFocus
           />
@@ -312,7 +312,7 @@ class Typeahead extends Component {
         <input
           ref="entry"
           type="text"
-          placeholder={ 'this.props.placeholder' }
+          placeholder={ this.props.placeholder }
           className={ inputClassList }
           defaultValue={ this.state.entryValue }
           onChange={ this._onTextEntryUpdated }
