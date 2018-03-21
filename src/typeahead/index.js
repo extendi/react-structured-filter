@@ -312,7 +312,7 @@ class Typeahead extends Component {
         <input
           ref="entry"
           type="text"
-          placeholder={ this.props.placeholder }
+          placeholder={ 'this.props.placeholder' }
           className={ inputClassList }
           defaultValue={ this.state.entryValue }
           onChange={ this._onTextEntryUpdated }
