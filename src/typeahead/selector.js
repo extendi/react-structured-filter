@@ -65,7 +65,7 @@ export default class TypeaheadSelector extends Component {
     if (this.state.selectionIndex > 5) {
       increment = this.state.selectionIndex - 5;
     }
-    this.refs.itemList.scrollTop = increment * this.refs.itemList.firstChild.offsetHeight; 
+    this.refs.itemList.scrollTop = increment * (this.refs.itemList.children[1]).offsetHeight; 
     
   }
 
