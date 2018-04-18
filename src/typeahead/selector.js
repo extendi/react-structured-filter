@@ -30,6 +30,7 @@ export default class TypeaheadSelector extends Component {
     this._onClick = this._onClick.bind( this );
     this.navDown = this.navDown.bind( this );
     this.navUp = this.navUp.bind( this );
+    this.repositionOnScroll = this.repositionOnScroll.bind( this );
   }
 
   state = {
@@ -58,6 +59,15 @@ export default class TypeaheadSelector extends Component {
   _onClick( result ) {
     this.props.onOptionSelected( result );
   }
+  
+  repositionOnScroll() {
+    let increment = 0;
+    if (this.state.selectionIndex > 5) {
+      increment = this.state.selectionIndex - 5;
+    }
+    this.refs.itemList.scrollTop = increment * this.refs.itemList.firstChild.offsetHeight; 
+    
+  }
 
   _nav( delta ) {
     if ( !this.props.options ) {
@@ -85,7 +95,7 @@ export default class TypeaheadSelector extends Component {
     this.setState({
       selectionIndex: newIndex,
       selection: newSelection,
-    });
+    }, () => this.repositionOnScroll());
   }
 
   navDown() {
@@ -112,6 +122,7 @@ export default class TypeaheadSelector extends Component {
           hover={ this.state.selectionIndex === i }
           customClasses={ this.props.customClasses }
           onClick={ this._onClick }
+          repositionOnScroll={ this.repositionOnScroll }
         >
           { result }
         </TypeaheadOption>
@@ -119,7 +130,7 @@ export default class TypeaheadSelector extends Component {
     , this );
 
     return (
-      <ul className={ classList }>
+      <ul ref="itemList" className={ classList }>
         <li className="header">{ this.props.header }</li>
         { results }
       </ul>

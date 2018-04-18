@@ -192,7 +192,6 @@ class Typeahead extends Component {
   }
 
   _onKeyDown( event ) {
-    console.log('_onKeyDown')
     // If Enter pressed
     if ( event.keyCode === KeyEvent.DOM_VK_RETURN || event.keyCode === KeyEvent.DOM_VK_ENTER ) {
       // If no options were provided so we can match on anything
