@@ -62,11 +62,14 @@ export default class TypeaheadSelector extends Component {
   
   repositionOnScroll() {
     let increment = 0;
-    if (this.state.selectionIndex > 5) {
-      increment = this.state.selectionIndex - 5;
+    const listHeight = this.refs.itemList.offsetHeight;
+    const itemHeight = (this.refs.itemList.children[1]).offsetHeight;
+    debugger
+    const itemInDropdown = listHeight / itemHeight - 1;
+    if (this.state.selectionIndex > itemInDropdown) {
+      increment = this.state.selectionIndex - itemInDropdown;
     }
-    this.refs.itemList.scrollTop = increment * (this.refs.itemList.children[1]).offsetHeight; 
-    
+    this.refs.itemList.scrollTop = increment * itemHeight;
   }
 
   _nav( delta ) {
