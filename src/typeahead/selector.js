@@ -122,7 +122,6 @@ export default class TypeaheadSelector extends Component {
           hover={ this.state.selectionIndex === i }
           customClasses={ this.props.customClasses }
           onClick={ this._onClick }
-          repositionOnScroll={ this.repositionOnScroll }
         >
           { result }
         </TypeaheadOption>
