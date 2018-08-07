@@ -13,10 +13,10 @@
     "classnames": "^2.2.3",
     "fuzzy": "^0.1.0",
     "moment": "*",
-    "object-assign": "^4.1.1",
-    "react-datepicker": "^1.6.0",
     "react-datetime": "^2.1.0",
-    "react-onclickoutside": "^6.7.1"
+    "react-datepicker": "^0.62.0",
+    "react-onclickoutside": "^6.7.1",
+    "object-assign": "^4.1.1"
   },
   "devDependencies": {
     "babel-cli": "^6.7.5",
@@ -30,10 +30,10 @@
     "css-loader": "^0.28.10",
     "eslint": "^4.18.1",
     "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-jsx-a11y": "*",
+    "eslint-plugin-import": "*",
     "eslint-loader": "^1.2.1",
     "eslint-plugin-babel": "^4.1.2",
-    "eslint-plugin-import": "*",
-    "eslint-plugin-jsx-a11y": "*",
     "eslint-plugin-react": "^7.7.0",
     "exports-loader": "^0.7.0",
     "express": "^4.13.4",
@@ -43,12 +43,12 @@
     "griddle-react": "^1.11.2",
     "less": "^3.0.1",
     "less-loader": "^4.0.5",
-    "prop-types": "^15.5.7",
     "react": "^16.2.0",
     "react-docgen": "^2.19.0",
     "react-dom": "^16.2.0",
     "react-transform-catch-errors": "^1.0.2",
     "react-transform-hmr": "^1.0.2",
+    "prop-types": "^15.5.7",
     "redbox-react": "^1.2.2",
     "rimraf": "^2.5.1",
     "style-loader": "^0.20.2",
@@ -59,9 +59,9 @@
     "webpack-hot-middleware": "^2.6.4"
   },
   "peerDependencies": {
-    "prop-types": "^15.5.7",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "prop-types": "^15.5.7"
   },
   "scripts": {
     "example:clean": "rimraf example/dist",
