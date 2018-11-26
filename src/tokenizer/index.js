@@ -412,6 +412,7 @@ export default class Tokenizer extends Component {
               datatype={ this._getInputType() }
               onOptionSelected={ this._addTokenForValue }
               onKeyDown={ this._onKeyDown }
+              eventTypes="mousedown"
             />
             </div>
           </div>

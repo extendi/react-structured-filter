@@ -19,7 +19,7 @@ app.get( '*', function serveStatic( req, res ) {
   res.sendFile( path.join( __dirname, 'example/src/index.html' ));
 });
 
-app.listen( port, 'localhost', function useLocalhost( err ) {
+app.listen( port, '0.0.0.0', function useLocalhost( err ) {
   if ( err ) {
     console.log( err );
     return;
