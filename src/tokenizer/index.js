@@ -434,6 +434,7 @@ export default class Tokenizer extends Component {
               onOptionSelected={ this._addTokenForValue }
               onKeyDown={ this._onKeyDown }
               removeDatePicker={ this._removeDatePicker }
+              eventTypes="mousedown"
             />
             </div>
           </div>
