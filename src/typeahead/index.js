@@ -70,7 +70,7 @@ class Typeahead extends Component {
     header: this.props.header,
     datatype: this.props.datatype,
     dateFormat: this.props.dateFormat,
-    
+
     focused: false,
 
     // The currently visible set of options
@@ -226,7 +226,12 @@ class Typeahead extends Component {
     this.setState({ focused: true });
   }
 
-  handleClickOutside() {
+  handleClickOutside(evt) {
+    // On mobile, if we start scroll the page we have to lose the focus from
+    // the input, otherwise the typeahead won't be rendered again.
+    if (evt.type == 'touchstart') {
+      this.inputRef().blur();
+    }
     this.setState({ focused: false });
   }
 

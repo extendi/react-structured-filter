@@ -356,7 +356,7 @@ export default class Tokenizer extends Component {
 
     return;
   }
-  
+
   _clearTokens() {
     this.state.selected = []
     this.setState({ selected: this.state.selected });
@@ -434,7 +434,6 @@ export default class Tokenizer extends Component {
               onOptionSelected={ this._addTokenForValue }
               onKeyDown={ this._onKeyDown }
               removeDatePicker={ this._removeDatePicker }
-              eventTypes="mousedown"
             />
             </div>
           </div>
