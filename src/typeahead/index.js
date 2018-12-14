@@ -301,12 +301,6 @@ class Typeahead extends Component {
             selected={ defaultDate }
             onSelect={ this._handleDateChange }
             onKeyDown={ this._onKeyDatePicker }
-            popperPlacement="bottom"
-            popperModifiers={{
-              flip: {
-                enabled: false
-              }
-            }}
             autoFocus
           />
         </span>
