@@ -167,6 +167,11 @@ export default class Tokenizer extends Component {
      * ```
      */
     operators: PropTypes.object,
+    /**
+     * Setting readOnly input in DatePicker component
+     * Set it to true in order to prevent the keyboard appearing in mobile.
+     */
+    readOnlyDatePicker: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -182,6 +187,7 @@ export default class Tokenizer extends Component {
       number: [ `==`, `!=`, `<`, `<=`, `>`, `>=` ],
       date: [ `==`, `!=`, `<`, `<=`, `>`, `>=` ],
     },
+    readOnlyDatePicker: false,
   }
 
   constructor( ...args ) {
@@ -434,6 +440,7 @@ export default class Tokenizer extends Component {
               onOptionSelected={ this._addTokenForValue }
               onKeyDown={ this._onKeyDown }
               removeDatePicker={ this._removeDatePicker }
+              readOnlyDatePicker={ this.props.readOnlyDatePicker }
             />
             </div>
           </div>

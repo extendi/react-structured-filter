@@ -36,6 +36,7 @@ class Typeahead extends Component {
     onOptionSelected: PropTypes.func,
     onKeyDown: PropTypes.func,
     className: PropTypes.string,
+    readOnlyDatePicker: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -46,6 +47,7 @@ class Typeahead extends Component {
     customClasses: {},
     defaultValue: '',
     placeholder: '',
+    readOnlyDatePicker: false,
     onKeyDown() { return; },
     onOptionSelected() { },
   }
@@ -302,6 +304,7 @@ class Typeahead extends Component {
             onSelect={ this._handleDateChange }
             onKeyDown={ this._onKeyDatePicker }
             autoFocus
+            readOnly={ this.props.readOnlyDatePicker }
           />
         </span>
       );

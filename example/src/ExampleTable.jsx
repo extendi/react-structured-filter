@@ -80,6 +80,7 @@ class ExampleTable extends React.Component {
             results: "filter-tokenizer-list__container",
             listItem: "filter-tokenizer-list__item"
           }}
+          readOnlyDatePicker
           onChange={this.updateFilter}
           value={this.state.filter}
         />
